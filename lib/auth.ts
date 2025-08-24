@@ -17,12 +17,13 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
+  secret: process.env.BETTER_AUTH_SECRET,
   user: {
     additionalFields: {
       role: {
         type: "string",
         input: false,
-        defaultValue: 'EVENT_OWNER'
+        defaultValue: "EVENT_OWNER",
       },
     },
   },
@@ -33,4 +34,4 @@ export const auth = betterAuth({
   },
 });
 
-type Session = typeof auth.$Infer.Session
+type Session = typeof auth.$Infer.Session;

@@ -17,8 +17,10 @@ import {
 import { Loader2 } from "lucide-react";
 import { authClient } from "@/lib/auth-client";
 import { PasswordInput } from "../ui/password-input";
+import { useRouter } from "next/navigation";
 
 export function RegisterForm() {
+  const router = useRouter();
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -64,6 +66,7 @@ export function RegisterForm() {
         {
           onRequest: (ctx) => {},
           onSuccess: (ctx) => {
+            router.push('/login');
             setSuccess("Account created successfully!");
           },
           onError: (ctx) => {
