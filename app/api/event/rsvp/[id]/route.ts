@@ -5,14 +5,14 @@ import { NextRequest, NextResponse } from "next/server";
 
 export async function GET(
   req: NextRequest,
-  { params }: { params: Promise<{ id: string }> } // 👈 params is async
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params; // ✅ must await
+
   const session = await auth.api.getSession(req); // Check user session
   if (!session) {
     return unauthorized("Please Authenticate");
   }
-
-  const { id } = await params; // 👈 must await params
 
   const attendees = await prisma.rsvp.findMany({
     where: {

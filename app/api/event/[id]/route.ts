@@ -1,11 +1,11 @@
-import { NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 import { prisma } from "@/lib/prisma";
 import { unauthorized } from "@/lib/response";
 import { auth } from "@/lib/auth";
 
 // Get event by ID
 export async function GET(
-  req: Request,
+  req: NextRequest,
   { params }: { params: Promise<{ id: string }> } // 👈 params is async
 ) {
   const session = await auth.api.getSession(req); // Check user session
@@ -32,9 +32,11 @@ export async function GET(
 
 // Update event
 export async function PUT(
-  req: Request,
-  { params }: { params: { id: string } }
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params; // ✅ must await
+
   const session = await auth.api.getSession(req); // Check user session
   if (!session) {
     return unauthorized("Please Authenticate");
@@ -42,7 +44,7 @@ export async function PUT(
 
   const body = await req.json();
   const updated = await prisma.event.update({
-    where: { id: params.id },
+    where: { id },
     data: body,
   });
   return NextResponse.json(updated);
@@ -50,14 +52,16 @@ export async function PUT(
 
 // Delete event
 export async function DELETE(
-  req: Request,
-  { params }: { params: { id: string } }
+  req: NextRequest,
+  context: { params: Promise<{ id: string }> }
 ) {
+  const { id } = await context.params; // ✅ must await
+
   const session = await auth.api.getSession(req); // Check user session
   if (!session) {
     return unauthorized("Please Authenticate");
   }
 
-  await prisma.event.delete({ where: { id: params.id } });
+  await prisma.event.delete({ where: { id } });
   return NextResponse.json({ message: "Deleted successfully" });
 }
