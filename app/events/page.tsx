@@ -14,7 +14,7 @@ import { Badge } from "@/components/ui/badge";
 import { Calendar, MapPin, Users, Search, Filter } from "lucide-react";
 import Link from "next/link";
 import { format } from "date-fns";
-import { eventApi } from "@/utils/api/events";
+import { publicApi } from "@/utils/api/public";
 
 interface PublicEvent {
   id: string;
@@ -36,7 +36,7 @@ export default function PublicEventsList() {
   const fetchAllEvents = async () => {
     setIsLoading(true);
     try {
-      const response = await eventApi.getAll();
+      const response = await publicApi.getAllEvents();
       setEvents(response);
     } catch (error) {
       console.log(error);

@@ -11,6 +11,7 @@ import Link from "next/link";
 import { RSVPForm } from "./rsvp-form";
 import { eventApi } from "@/utils/api/events";
 import { usePathname } from "next/navigation";
+import { publicApi } from "@/utils/api/public";
 
 interface PublicEvent {
   id: string;
@@ -48,7 +49,7 @@ export function PublicEventDetails({ eventId }: PublicEventDetailsProps) {
   const fetchEventById = async () => {
     setIsLoading(true);
     try {
-      const response = await eventApi.getById(eventId);
+      const response = await publicApi.getById(eventId);
       setEvent(response);
     } catch (error) {
       console.log(error);
