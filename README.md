@@ -1,36 +1,121 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+EventEase – Event Planning and Management Tool
 
-## Getting Started
+EventEase is a scalable and intuitive event management solution tailored for professional event planning and participant engagement.
+It allows Admins, Staff, and Event Owners to manage events, track RSVPs, and engage participants with ease.
 
-First, run the development server:
+This project was developed as part of the Fullstack Developer (L2A) assignment.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+🚀 Features
+🔐 Authentication & Authorization
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Secure login and role-based access control.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+User Roles:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+Admin: Full application control (manage users & system).
+Staff: Manage and moderate events.
+Event Owner: Create, edit, and monitor events.
+Public users can view event details and RSVP without authentication.
 
-## Learn More
+📅 Event Management (for authenticated users)
 
-To learn more about Next.js, take a look at the following resources:
+Create, edit, and delete events.
+Add event details (title, description, date, location).
+Publicly shareable event page.
+Manage RSVPs and attendees.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+🧑‍🤝‍🧑 Attendee Management
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+RSVP forms (name, email).
+Attendee list with timestamps.
+Export attendee data (CSV).
 
-## Deploy on Vercel
+🌍 Public Engagement
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+Public event page (/event/[id]).
+RSVP submission without login.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+✅ Additional Implementations
+
+Secure API endpoints using Next.js Route Handlers.
+Database schema designed with Prisma + PostgreSQL.
+UI built with Next.js 15, Tailwind CSS v4, shadcn/ui.
+
+Deployment-ready setup.
+
+🛠️ Tech Stack
+Language: TypeScript
+Framework: Next.js 15
+Runtime: Node.js 22.16.0 (Bun also supported)
+Styling: Tailwind CSS v4 + shadcn/ui
+Database: PostgreSQL (via Supabase)
+ORM: Prisma
+Authentication: Better Auth
+Deployment: Vercel
+
+⚙️ Setup Instructions
+
+1. Clone Repository
+   git clone https://github.com/NaveenprasanthT/eventease.git
+   cd eventease
+
+2. Install Dependencies
+   npm install
+
+3. Configure Environment Variables
+   Copy the example environment file:
+   cp .env.example .env
+   Fill in the required values in .env.
+
+4. Database Setup
+   npx prisma migrate dev
+   npx prisma generate
+
+5. Run Development Server
+   npm run dev
+
+
+App runs at: http://localhost:3000
+
+🔑 Credentials for Evaluation
+
+Admin Login:
+
+Email: naveenprasanth2109@gmail.com
+Password: Naveen@777
+
+📦 Deployment
+
+Deployed on Vercel (Recommended).
+🔗 Live URL: https://eventease.vercel.app
+(replace with your actual URL)
+
+📂 Project Structure
+eventease/
+├── prisma/ # Prisma schema & migrations
+├── src/
+│ ├── app/ # Next.js app router
+│ ├── components/ # Reusable UI components
+│ ├── lib/ # Auth, Prisma client, utilities
+│ ├── styles/ # Tailwind configs
+├── public/ # Static assets
+├── .env.example # Example environment variables
+├── README.md # Project documentation
+└── package.json
+
+🧪 Known Limitations
+Due to time constraints, some advanced features may not be fully implemented:
+Analytics dashboard for views & RSVPs.
+
+👤 Author
+
+Naveenprasanth T
+
+🌐 GitHub
+💼 LinkedIn
+📜 License
+
+This project is for assignment purposes only.
+You own your code.
+
+✨ Built with ❤️ using Next.js + Prisma + Tailwind + Shadcn ui
